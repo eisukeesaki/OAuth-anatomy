@@ -1,9 +1,11 @@
 const express = require("express");
 const session = require("express-session");
+const logger = require("morgan");
 const userService = require("./lib/services/UserService/UserService");
 
 const app = express();
 
+app.use(logger("dev"));
 app.use(session({
   secret: "secret",
   name: "oauth-session",

@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
     return res.redirect("http://localhost:5000/validate"); // 5000 = oauthProvider
 
   res.end("if you received this message, you have a valid session");
-})
+});
 
 module.exports = app;
 

@@ -34,5 +34,16 @@ app.get("/login", (req, res) => {
   res.sendFile(path.resolve(__dirname, "views", "login.html"));
 });
 
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  const user = userService.getUser(username, password);
+  if (user && req.session)
+    req.session.userId = user.id;
+  else
+    return res.status(400).end("invalid username or password");
+
+  res.redirect("/validate");
+});
+
 module.exports = app;
 

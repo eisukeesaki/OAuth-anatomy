@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const logger = require("morgan");
 const axios = require("axios");
-const userService = require("./lib/services/UserService/UserService");
+const { userService } = require("./lib/services");
 
 const app = express();
 

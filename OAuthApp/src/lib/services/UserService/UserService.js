@@ -5,7 +5,7 @@ let userDb = {
 };
 
 class UserService {
-  static getUserById(id) {
+  getUserById(id) {
     const storedUser = id === 1 ? userDb : null;
 
     if (storedUser)
@@ -14,7 +14,7 @@ class UserService {
       return null;
   }
 
-  static createUser(id, username, password) {
+  createUser(id, username, password) {
     userDb = {
       id: id,
       username: username,

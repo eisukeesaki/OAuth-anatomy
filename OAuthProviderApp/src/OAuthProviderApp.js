@@ -11,7 +11,7 @@ const app = express();
 
 app.use(logger("dev"));
 app.use(session({
-  secret: "secret",
+  secret: "a-secret",
   name: "oauth-provider-session",
   resave: false,
   saveUninitialized: false,

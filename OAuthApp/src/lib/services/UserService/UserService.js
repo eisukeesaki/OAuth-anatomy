@@ -1,4 +1,4 @@
-const userDb = {
+let userDb = {
   id: 1,
   username: "asuka",
   password: "letasukain"
@@ -12,6 +12,15 @@ class UserService {
       return storedUser;
     else
       return null;
+  }
+
+  static createUser(id, username, password) {
+    userDb = {
+      id: id,
+      username: username,
+      password: password
+    }
+    return userDb;
   }
 }
 

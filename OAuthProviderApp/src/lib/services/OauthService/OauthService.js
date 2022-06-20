@@ -1,21 +1,21 @@
-const tokenHolder = {
-  accessToken: "aVulnerableToken",
+let tokenHolder = {
+  accessToken: "anAccessToken",
   ttlInSeconds: 3600,
   scope: "profile",
   userId: 1,
   createdAt: Date.now()
 }
 
-const validationCode = "aVulnerableCode";
+const validationCode = "aValidationCode";
 const codeDb = {};
 
 class OauthService {
-  static createValidationCode(userId) {
+  createValidationCode(userId) {
     codeDb[validationCode] = userId;
     return validationCode;
   }
 
-  static isValidCode(code, userId) {
+  isValidCode(code, userId) {
     const storedId = codeDb[code];
     const isValidCode = storedId === userId;
 
@@ -25,12 +25,12 @@ class OauthService {
       return false;
   }
 
-  static createAcessTokenHolder() {
+  createAcessTokenHolder() {
     return tokenHolder;
   }
 
-  static getTokenHolderByAccessToken(token) {
-    if (token === "aVulnerableToken")
+  getTokenHolderByAccessToken(token) {
+    if (token === "anAccessToken")
       return tokenHolder;
     else
       return null;

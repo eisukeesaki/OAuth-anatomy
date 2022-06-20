@@ -2,8 +2,9 @@ const express = require("express");
 const session = require("express-session");
 const path = require("path");
 const logger = require("morgan");
-const userService = require("./lib/services/UserService/UserService");
-const oauthService = require("./lib/services/OauthService/OauthService");
+// const userService = require("./lib/services/UserService/UserService");
+// const oauthService = require("./lib/services/OauthService/OauthService");
+const { userService, oauthService } = require("./lib/services");
 const { getAccessTokenHolder } = require("./lib/services/OauthService/OauthService");
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(session({
   secret: "secret",
   name: "oauth-provider-session",
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { secure: false }
 }));
 app.use(express.urlencoded({ extended: false }));

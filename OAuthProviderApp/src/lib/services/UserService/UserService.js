@@ -1,11 +1,11 @@
-const userDb = {
+let userDb = {
   id: 1,
   username: "asuka",
   password: "letasukain"
 };
 
 class UserService {
-  static getUserById(id) {
+  getUserById(id) {
     const storedUser = id === 1 ? userDb : null;
 
     if (storedUser)
@@ -14,7 +14,7 @@ class UserService {
       return null;
   }
 
-  static getUser(username, password) {
+  getUser(username, password) {
     const storedUser = username === "asuka" ? userDb : null;
 
     if (password === storedUser.password)

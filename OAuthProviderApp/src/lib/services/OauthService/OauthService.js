@@ -6,7 +6,7 @@ let tokenHolder = {
   createdAt: Date.now()
 }
 
-const validationCode = "aValidationCode";
+const validationCode = "aValidationCode"; // unique for every consent form sent to end-user
 const codeDb = {};
 
 class OauthService {

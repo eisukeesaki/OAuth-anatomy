@@ -4,6 +4,7 @@ const path = require("path");
 const logger = require("morgan");
 const userService = require("./lib/services/UserService/UserService");
 const oauthService = require("./lib/services/OauthService/OauthService");
+const { getAccessTokenHolder } = require("./lib/services/OauthService/OauthService");
 
 const app = express();
 
@@ -32,9 +33,26 @@ app.get("/validate", (req, res) => {
 
 app.post("/consent", (req, res) => {
   const { code } = req.body;
-  oauthService.isValidCode(code, req.session && req.session.userId);
-  const holder = oauthService.createAcessTokenHolder();
-  res.redirect(`http://localhost:4000/token?token=${holder.accessToken}`); // 4000 = OAuthApp
+  const isValidCode = oauthService.isValidCode(code, req.session && req.session.userId);
+
+  if (isValidCode) {
+    const holder = oauthService.createAcessTokenHolder();
+    res.redirect(`http://localhost:4000/token?token=${holder.accessToken}`); // 4000 = OAuthApp
+  } else {
+    console.log("received an invalid validation code");
+    res.redirect("/validate");
+  }
+});
+
+app.get("/profile", (req, res) => {
+  const holder = oauthService.getTokenHolderByAccessToken(req.query.token);
+
+  if (!holder) {
+    console.log("failed to get token holder by access token");
+    return res.redirect("/validate");
+  }
+
+  res.json(userService.getUserById(holder.userId));
 });
 
 app.get("/login", (req, res) => {

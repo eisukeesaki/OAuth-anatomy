@@ -30,6 +30,13 @@ app.get("/validate", (req, res) => {
   res.render("consent.ejs", { validationCode: oauthService.createValidationCode(req.session.userId) });
 });
 
+app.post("/consent", (req, res) => {
+  const { code } = req.body;
+  oauthService.isValidCode(code, req.session && req.session.userId);
+  const holder = oauthService.createAcessTokenHolder();
+  res.redirect(`http://localhost:4000/token?token=${holder.accessToken}`); // 4000 = OAuthApp
+});
+
 app.get("/login", (req, res) => {
   res.sendFile(path.resolve(__dirname, "views", "login.html"));
 });

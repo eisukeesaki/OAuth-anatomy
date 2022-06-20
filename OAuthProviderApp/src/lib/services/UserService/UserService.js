@@ -1,14 +1,24 @@
+const userDb = {
+  id: 1,
+  username: "asuka",
+  password: "letasukain"
+};
+
 class UserService {
   static getUserById(id) {
-    if (id === "1")
-      return { id: "1", username: "asuka", password: "letasukain" };
+    const storedUser = id === 1 ? userDb : null;
+
+    if (storedUser)
+      return storedUser;
     else
       return null;
   }
 
   static getUser(username, password) {
-    if (username === "asuka" && password === "letasukain")
-      return { id: "1", username, password };
+    const storedUser = username === "asuka" ? userDb : null;
+
+    if (password === storedUser.password)
+      return storedUser;
     else
       return null;
   }

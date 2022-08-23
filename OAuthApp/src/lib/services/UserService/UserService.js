@@ -1,7 +1,6 @@
 let userDb = {
   id: 1,
-  username: "asuka",
-  password: "letasukain"
+  username: "myusername"
 };
 
 class UserService {

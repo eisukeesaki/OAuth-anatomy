@@ -29,8 +29,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/token", async (req, res) => {
-  const profile = (await axios.get(`http://localhost:5000/profile?token=${req.query.token}`)).data;
-  const user = userService.createUser(profile.id, profile.username, profile.password);
+  const { data: profile } = await axios.get(`http://localhost:5000/profile?token=${req.query.token}`);
+  const user = userService.createUser(profile.id, profile.username);
 
   if (req.session)
     req.session.userId = user.id;

@@ -1,24 +1,32 @@
 let userDb = {
   id: 1,
-  username: "asuka",
-  password: "letasukain"
+  username: "myusername",
+  password: "mypassword"
 };
 
 class UserService {
   getUserById(id) {
-    const storedUser = id === 1 ? userDb : null;
+    const foundUser = id === 1 ? userDb : null;
 
-    if (storedUser)
-      return storedUser;
+    if (foundUser) {
+      return {
+        id: userDb.id,
+        username: userDb.username
+      }
+    }
     else
       return null;
   }
 
   getUser(username, password) {
-    const storedUser = username === "asuka" ? userDb : null;
+    const foundUser = username === "myusername" ? userDb : null;
 
-    if (password === storedUser.password)
-      return storedUser;
+    if (password === foundUser.password) {
+      return {
+        id: userDb.id,
+        username: userDb.username
+      }
+    }
     else
       return null;
   }

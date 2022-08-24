@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
   else
     return res.redirect("http://localhost:5000/validate"); // 5000 = oauthProvider
 
-  res.end("if you received this message, you have a valid session");
+  res.end("This is a protected resource. If you are seeing this message, you have a valid session");
 });
 
 app.get("/token", async (req, res) => {
